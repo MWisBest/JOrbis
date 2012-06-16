@@ -1198,7 +1198,7 @@ public class VorbisFile
 			}
 		}
 		
-		return ( (float)time_total + (float)( pcm_offset - pcm_total ) / vi[link].rate );
+		return ( time_total + (float)( pcm_offset - pcm_total ) / vi[link].rate );
 	}
 	
 	// link: -1) return the vorbis_info struct for the bitstream section
@@ -1488,24 +1488,28 @@ public class VorbisFile
 			raf = new java.io.RandomAccessFile( file, mode );
 		}
 		
+		@Override
 		public int read() throws java.io.IOException
 		{
 			return raf.read();
 		}
 		
+		@Override
 		public int read( byte[] buf ) throws java.io.IOException
 		{
 			return raf.read( buf );
 		}
 		
+		@Override
 		public int read( byte[] buf, int s, int len ) throws java.io.IOException
 		{
 			return raf.read( buf, s, len );
 		}
 		
+		@Override
 		public long skip( long n ) throws java.io.IOException
 		{
-			return (long)( raf.skipBytes( (int)n ) );
+			return ( raf.skipBytes( (int)n ) );
 		}
 		
 		public long getLength() throws java.io.IOException
@@ -1518,24 +1522,29 @@ public class VorbisFile
 			return raf.getFilePointer();
 		}
 		
+		@Override
 		public int available() throws java.io.IOException
 		{
 			return ( raf.length() == raf.getFilePointer() ) ? 0 : 1;
 		}
 		
+		@Override
 		public void close() throws java.io.IOException
 		{
 			raf.close();
 		}
 		
+		@Override
 		public synchronized void mark( int m )
 		{
 		}
 		
+		@Override
 		public synchronized void reset() throws java.io.IOException
 		{
 		}
 		
+		@Override
 		public boolean markSupported()
 		{
 			return false;

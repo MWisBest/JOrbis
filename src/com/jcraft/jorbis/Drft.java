@@ -130,7 +130,7 @@ class Drft
 						{
 							ld += l1;
 							i = is;
-							argld = (float)ld * argh;
+							argld = ld * argh;
 							fi = 0.f;
 							for( ii = 2; ii < ido; ii += 2 )
 							{
@@ -326,7 +326,7 @@ class Drft
 		float dcp = 0, arg, dsp = 0, ar1h, ar2h;
 		int idp2, ipp2;
 		
-		arg = tpi / (float)ip;
+		arg = tpi / ip;
 		dcp = (float)Math.cos( arg );
 		dsp = (float)Math.sin( arg );
 		ipph = ( ip + 1 ) >> 1;
@@ -984,7 +984,7 @@ class Drft
 				case 100:
 					t10 = ip * ido;
 					t0 = l1 * ido;
-					arg = tpi / (float)ip;
+					arg = tpi / ip;
 					dcp = (float)Math.cos( arg );
 					dsp = (float)Math.sin( arg );
 					nbd = ( ido - 1 ) >>> 1;

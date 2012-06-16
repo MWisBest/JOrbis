@@ -25,6 +25,7 @@ package com.jcraft.jorbis;
 class Residue2 extends Residue0
 {
 	
+	@Override
 	int inverse( Block vb, Object vl, float[][] in, int[] nonzero, int ch )
 	{
 		int i = 0;

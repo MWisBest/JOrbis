@@ -493,6 +493,7 @@ public class Info
 		return ( blocksizes[mode_param[mode].blockflag] );
 	}
 	
+	@Override
 	public String toString()
 	{
 		return "version:" + new Integer( version ) + ", channels:" + new Integer( channels ) + ", rate:" + new Integer( rate ) + ", bitrate:" + new Integer( bitrate_upper ) + "," + new Integer( bitrate_nominal ) + "," + new Integer( bitrate_lower );

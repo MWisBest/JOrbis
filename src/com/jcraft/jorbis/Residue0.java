@@ -26,6 +26,7 @@ import com.jcraft.jogg.Buffer;
 
 class Residue0 extends FuncResidue
 {
+	@Override
 	void pack( Object vr, Buffer opb )
 	{
 		InfoResidue0 info = (InfoResidue0)vr;
@@ -67,6 +68,7 @@ class Residue0 extends FuncResidue
 		}
 	}
 	
+	@Override
 	Object unpack( Info vi, Buffer opb )
 	{
 		int acc = 0;
@@ -110,6 +112,7 @@ class Residue0 extends FuncResidue
 		return ( info );
 	}
 	
+	@Override
 	Object look( DspState vd, InfoMode vm, Object vr )
 	{
 		InfoResidue0 info = (InfoResidue0)vr;
@@ -166,10 +169,12 @@ class Residue0 extends FuncResidue
 		return ( look );
 	}
 	
+	@Override
 	void free_info( Object i )
 	{
 	}
 	
+	@Override
 	void free_look( Object i )
 	{
 	}
@@ -322,6 +327,7 @@ class Residue0 extends FuncResidue
 		return ( 0 );
 	}
 	
+	@Override
 	int inverse( Block vb, Object vl, float[][] in, int[] nonzero, int ch )
 	{
 		int used = 0;

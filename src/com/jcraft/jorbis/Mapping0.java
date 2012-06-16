@@ -28,14 +28,17 @@ class Mapping0 extends FuncMapping
 {
 	static int seq = 0;
 	
+	@Override
 	void free_info( Object imap )
 	{
 	};
 	
+	@Override
 	void free_look( Object imap )
 	{
 	}
 	
+	@Override
 	Object look( DspState vd, InfoMode vm, Object m )
 	{
 		// System.err.println("Mapping0.look");
@@ -77,6 +80,7 @@ class Mapping0 extends FuncMapping
 		return ( look );
 	}
 	
+	@Override
 	void pack( Info vi, Object imap, Buffer opb )
 	{
 		InfoMapping0 info = (InfoMapping0)imap;
@@ -132,6 +136,7 @@ class Mapping0 extends FuncMapping
 	}
 	
 	// also responsible for range checking
+	@Override
 	Object unpack( Info vi, Buffer opb )
 	{
 		InfoMapping0 info = new InfoMapping0();
@@ -211,6 +216,7 @@ class Mapping0 extends FuncMapping
 	int[] nonzero = null;
 	Object[] floormemo = null;
 	
+	@Override
 	synchronized int inverse( Block vb, Object l )
 	{
 		DspState vd = vb.vd;
