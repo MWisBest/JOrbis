@@ -24,6 +24,8 @@ package com.jcraft.jorbis;
 
 import com.jcraft.jogg.Buffer;
 import com.jcraft.jogg.Packet;
+import com.jcraft.jorbis.Mapping0.InfoMapping0;
+import com.jcraft.jorbis.Residue0.InfoResidue0;
 
 public class Info
 {
@@ -82,7 +84,7 @@ public class Info
 	InfoMode[] mode_param = null;
 	
 	int[] map_type = null;
-	Object[] map_param = null;
+	InfoMapping0[] map_param = null;
 	
 	int[] time_type = null;
 	Object[] time_param = null;
@@ -91,7 +93,7 @@ public class Info
 	Object[] floor_param = null;
 	
 	int[] residue_type = null;
-	Object[] residue_param = null;
+	InfoResidue0[] residue_param = null;
 	
 	StaticCodeBook[] book_param = null;
 	
@@ -252,7 +254,7 @@ public class Info
 		
 		if( residue_type == null || residue_type.length != residues ) residue_type = new int[residues];
 		
-		if( residue_param == null || residue_param.length != residues ) residue_param = new Object[residues];
+		if( residue_param == null || residue_param.length != residues ) residue_param = new InfoResidue0[residues];
 		
 		for( int i = 0; i < residues; i++ )
 		{
@@ -273,7 +275,7 @@ public class Info
 		// map backend settings
 		maps = opb.read( 6 ) + 1;
 		if( map_type == null || map_type.length != maps ) map_type = new int[maps];
-		if( map_param == null || map_param.length != maps ) map_param = new Object[maps];
+		if( map_param == null || map_param.length != maps ) map_param = new InfoMapping0[maps];
 		for( int i = 0; i < maps; i++ )
 		{
 			map_type[i] = opb.read( 16 );

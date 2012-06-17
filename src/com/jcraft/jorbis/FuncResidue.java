@@ -23,14 +23,15 @@
 package com.jcraft.jorbis;
 
 import com.jcraft.jogg.Buffer;
+import com.jcraft.jorbis.Residue0.InfoResidue0;
 
 abstract class FuncResidue
 {
 	public static FuncResidue[] residue_P = { new Residue0(), new Residue1(), new Residue2() };
 	
-	abstract void pack( Object vr, Buffer opb );
+	abstract void pack( InfoResidue0 vr, Buffer opb );
 	
-	abstract Object unpack( Info vi, Buffer opb );
+	abstract InfoResidue0 unpack( Info vi, Buffer opb );
 	
 	abstract Object look( DspState vd, InfoMode vm, Object vr );
 	

@@ -22,6 +22,8 @@
  */
 package com.jcraft.jorbis;
 
+import com.jcraft.jorbis.Mapping0.LookMapping0;
+
 public class DspState
 {
 	static final float M_PI = 3.1415926539f;
@@ -61,7 +63,7 @@ public class DspState
 	Object[][] transform;
 	CodeBook[] fullbooks;
 	// backend lookups are tied to the mode, not the backend or naked mapping
-	Object[] mode;
+	LookMapping0[] mode;
 	
 	// local storage, only used on the encoding side. This way the
 	// application does not need to worry about freeing some packets'
@@ -204,7 +206,7 @@ public class DspState
 		pcm_current = centerW;
 		
 		// initialize all the mapping/backend lookups
-		mode = new Object[vi.modes];
+		mode = new LookMapping0[vi.modes];
 		for( int i = 0; i < vi.modes; i++ )
 		{
 			int mapnum = vi.mode_param[i].mapping;

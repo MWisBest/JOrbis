@@ -23,20 +23,22 @@
 package com.jcraft.jorbis;
 
 import com.jcraft.jogg.Buffer;
+import com.jcraft.jorbis.Mapping0.InfoMapping0;
+import com.jcraft.jorbis.Mapping0.LookMapping0;
 
 abstract class FuncMapping
 {
 	public static FuncMapping[] mapping_P = { new Mapping0() };
 	
-	abstract void pack( Info info, Object imap, Buffer buffer );
+	abstract void pack( Info info, InfoMapping0 imap, Buffer buffer );
 	
-	abstract Object unpack( Info info, Buffer buffer );
+	abstract InfoMapping0 unpack( Info info, Buffer buffer );
 	
-	abstract Object look( DspState vd, InfoMode vm, Object m );
+	abstract LookMapping0 look( DspState vd, InfoMode vm, InfoMapping0 m );
 	
-	abstract void free_info( Object imap );
+	abstract void free_info( InfoMapping0 imap );
 	
-	abstract void free_look( Object imap );
+	abstract void free_look( InfoMapping0 imap );
 	
 	abstract int inverse( Block vd, Object lm );
 }

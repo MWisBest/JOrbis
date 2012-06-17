@@ -27,28 +27,27 @@ import com.jcraft.jogg.Buffer;
 class Residue0 extends FuncResidue
 {
 	@Override
-	void pack( Object vr, Buffer opb )
+	void pack( InfoResidue0 vr, Buffer opb )
 	{
-		InfoResidue0 info = (InfoResidue0)vr;
 		int acc = 0;
-		opb.write( info.begin, 24 );
-		opb.write( info.end, 24 );
+		opb.write( vr.begin, 24 );
+		opb.write( vr.end, 24 );
 		
-		opb.write( info.grouping - 1, 24 ); /*
+		opb.write( vr.grouping - 1, 24 ); /*
 											 * residue vectors to group and
 											 * code with a partitioned book
 											 */
-		opb.write( info.partitions - 1, 6 ); /* possible partition choices */
-		opb.write( info.groupbook, 8 ); /* group huffman book */
+		opb.write( vr.partitions - 1, 6 ); /* possible partition choices */
+		opb.write( vr.groupbook, 8 ); /* group huffman book */
 		
 		/*
 		 * secondstages is a bitmask; as encoding progresses pass by pass, a
 		 * bitmask of one indicates this partition class has bits to write
 		 * this pass
 		 */
-		for( int j = 0; j < info.partitions; j++ )
+		for( int j = 0; j < vr.partitions; j++ )
 		{
-			int i = info.secondstages[j];
+			int i = vr.secondstages[j];
 			if( Util.ilog( i ) > 3 )
 			{
 				/* yes, this is a minor hack due to not thinking ahead */
@@ -64,12 +63,12 @@ class Residue0 extends FuncResidue
 		}
 		for( int j = 0; j < acc; j++ )
 		{
-			opb.write( info.booklist[j], 8 );
+			opb.write( vr.booklist[j], 8 );
 		}
 	}
 	
 	@Override
-	Object unpack( Info vi, Buffer opb )
+	InfoResidue0 unpack( Info vi, Buffer opb )
 	{
 		int acc = 0;
 		InfoResidue0 info = new InfoResidue0();
