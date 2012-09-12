@@ -1,7 +1,7 @@
 /*
  * This file is part of JOrbis.
  *
- * Copyright Â© 2000, JCraft Inc.
+ * Copyright © 2000, JCraft Inc.
  * JOrbis is licensed under the GNU Lesser General Public License.
  *
  * JOrbis is free software: you can redistribute it and/or modify
@@ -140,10 +140,7 @@ public class Comment
 					// return user_comments[i] + taglen + 1;
 					return i;
 				}
-				else
-				{
-					found++;
-				}
+				found++;
 			}
 		}
 		return -1;

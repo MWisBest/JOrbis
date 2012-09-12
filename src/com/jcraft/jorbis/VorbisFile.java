@@ -1,7 +1,7 @@
 /*
  * This file is part of JOrbis.
  *
- * Copyright Â© 2000, JCraft Inc.
+ * Copyright © 2000, JCraft Inc.
  * JOrbis is licensed under the GNU Lesser General Public License.
  *
  * JOrbis is free software: you can redistribute it and/or modify
@@ -209,10 +209,7 @@ public class VorbisFile
 					if( offst == -1 ) throw new JOrbisException();
 					break;
 				}
-				else
-				{
-					offst = ret;
-				}
+				offst = ret;
 			}
 		}
 		seek_helper( offst ); // !!!
@@ -798,37 +795,25 @@ public class VorbisFile
 			}
 			return ( (int)Math.rint( bits / time_total( -1 ) ) );
 		}
-		else
+		if( seekable )
 		{
-			if( seekable )
-			{
-				// return the actual bitrate
-				return ( (int)Math.rint( ( offsets[i + 1] - dataoffsets[i] ) * 8 / time_total( i ) ) );
-			}
-			else
-			{
-				// return nominal if set
-				if( vi[i].bitrate_nominal > 0 )
-				{
-					return vi[i].bitrate_nominal;
-				}
-				else
-				{
-					if( vi[i].bitrate_upper > 0 )
-					{
-						if( vi[i].bitrate_lower > 0 )
-						{
-							return ( vi[i].bitrate_upper + vi[i].bitrate_lower ) / 2;
-						}
-						else
-						{
-							return vi[i].bitrate_upper;
-						}
-					}
-					return ( -1 );
-				}
-			}
+			// return the actual bitrate
+			return ( (int)Math.rint( ( offsets[i + 1] - dataoffsets[i] ) * 8 / time_total( i ) ) );
 		}
+		// return nominal if set
+		if( vi[i].bitrate_nominal > 0 )
+		{
+			return vi[i].bitrate_nominal;
+		}
+		if( vi[i].bitrate_upper > 0 )
+		{
+			if( vi[i].bitrate_lower > 0 )
+			{
+				return ( vi[i].bitrate_upper + vi[i].bitrate_lower ) / 2;
+			}
+			return vi[i].bitrate_upper;
+		}
+		return ( -1 );
 	}
 	
 	// returns the actual bitrate since last call. returns -1 if no
@@ -851,10 +836,7 @@ public class VorbisFile
 		{
 			return ( current_serialno );
 		}
-		else
-		{
-			return ( serialnos[i] );
-		}
+		return ( serialnos[i] );
 	}
 	
 	// returns: total raw (compressed) length of content if i==-1
@@ -873,10 +855,7 @@ public class VorbisFile
 			}
 			return ( acc );
 		}
-		else
-		{
-			return ( offsets[i + 1] - offsets[i] );
-		}
+		return ( offsets[i + 1] - offsets[i] );
 	}
 	
 	// returns: total PCM length (samples) of content if i==-1
@@ -894,10 +873,7 @@ public class VorbisFile
 			}
 			return ( acc );
 		}
-		else
-		{
-			return ( pcmlengths[i] );
-		}
+		return ( pcmlengths[i] );
 	}
 	
 	// returns: total seconds of content if i==-1
@@ -915,10 +891,7 @@ public class VorbisFile
 			}
 			return ( acc );
 		}
-		else
-		{
-			return ( (float)( pcmlengths[i] ) / vi[i].rate );
-		}
+		return ( (float)( pcmlengths[i] ) / vi[i].rate );
 	}
 	
 	// seek to an offset relative to the *compressed* data. This also
@@ -1219,34 +1192,19 @@ public class VorbisFile
 				{
 					return vi[current_link];
 				}
-				else
-				{
-					return null;
-				}
+				return null;
 			}
-			else
-			{
-				if( link >= links )
-				{
-					return null;
-				}
-				else
-				{
-					return vi[link];
-				}
-			}
-		}
-		else
-		{
-			if( decode_ready )
-			{
-				return vi[0];
-			}
-			else
+			if( link >= links )
 			{
 				return null;
 			}
+			return vi[link];
 		}
+		if( decode_ready )
+		{
+			return vi[0];
+		}
+		return null;
 	}
 	
 	public Comment getComment( int link )
@@ -1259,34 +1217,19 @@ public class VorbisFile
 				{
 					return vc[current_link];
 				}
-				else
-				{
-					return null;
-				}
+				return null;
 			}
-			else
-			{
-				if( link >= links )
-				{
-					return null;
-				}
-				else
-				{
-					return vc[link];
-				}
-			}
-		}
-		else
-		{
-			if( decode_ready )
-			{
-				return vc[0];
-			}
-			else
+			if( link >= links )
 			{
 				return null;
 			}
+			return vc[link];
 		}
+		if( decode_ready )
+		{
+			return vc[0];
+		}
+		return null;
 	}
 	
 	int host_is_big_endian()

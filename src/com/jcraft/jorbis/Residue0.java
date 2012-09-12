@@ -1,7 +1,7 @@
 /*
  * This file is part of JOrbis.
  *
- * Copyright Â© 2000, JCraft Inc.
+ * Copyright © 2000, JCraft Inc.
  * JOrbis is licensed under the GNU Lesser General Public License.
  *
  * JOrbis is free software: you can redistribute it and/or modify
@@ -338,7 +338,7 @@ class Residue0 extends FuncResidue
 			}
 		}
 		if( used != 0 ) return ( _01inverse( vb, vl, in, used, 0 ) );
-		else return ( 0 );
+		return ( 0 );
 	}
 	
 	class LookResidue0
